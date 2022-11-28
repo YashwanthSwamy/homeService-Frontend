@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -6,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  Roles: any = ['Admin', 'Author', 'Reader'];
-  
-  constructor() { }
+  Roles: any = ['Customer', 'Service Provider'];
+  hide = true;
+  items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  loginClicked(){
+    this.router.navigateByUrl('/login');
   }
 
 }

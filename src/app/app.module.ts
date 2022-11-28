@@ -9,13 +9,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './Login/log-in/log-in.component';
 import { RegisterComponent } from './Login/register/register.component';
+import { LoginHomepageComponent } from './Login/login-homepage/login-homepage.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginHomepageComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,7 @@ import { RegisterComponent } from './Login/register/register.component';
     AngularMaterialModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
