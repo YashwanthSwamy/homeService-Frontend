@@ -11,7 +11,10 @@ import { LogInComponent } from './Login/log-in/log-in.component';
 import { RegisterComponent } from './Login/register/register.component';
 import { LoginHomepageComponent } from './Login/login-homepage/login-homepage.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookingComponent } from './booking/booking.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { HomepageComponent } from './homepage/homepage.component';
     LogInComponent,
     RegisterComponent,
     LoginHomepageComponent,
-    HomepageComponent
+    HomepageComponent,
+    DashboardComponent,
+    BookingComponent,
+    CustomerInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +35,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
