@@ -1,26 +1,20 @@
-<div fxLayout="row" fxLayoutAlign="center center" flex-direction="column">
-    <div>
-        <img class="logo" src="../../../assets/logo.png" alt="logo">
-    </div>
-    <div>
-        <h1 class="company-name">Home Service</h1>
-    </div>
-</div>
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
         <mat-card-header>
-            <mat-card-title>Register</mat-card-title>
+            <mat-card-title>Update Info</mat-card-title>
         </mat-card-header>
         <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
             <form class="example-form">
                 <mat-card-content>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Full Name</mat-label>
-                        <input matInput placeholder="Full Name">
+                        <input matInput placeholder="Full Name" [(ngModel)]="name" class="form-control" 
+                        [ngModelOptions]="{standalone: true}"  #full_name (keyup)="newValue()">
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email">
+                        <input matInput placeholder="Email" [(ngModel)]="email" class="form-control" 
+                        [ngModelOptions]="{standalone: true}"  #Email (keyup)="newValue()">
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Password</mat-label>
@@ -79,11 +73,9 @@
                 </mat-card-content>
             </form>
         </cdk-virtual-scroll-viewport>
-        <button style="padding: 0px;" mat-stroked-button color="accent" class="btn-block">Register</button>
-        <button mat-button color="primary" style="margin-top: 8px;" class="btn-block" (click)="loginClicked()">Exisiting
-            User</button>
+        <button mat-button color="primary" style="margin-top: 8px;" class="btn-block" 
+        [disabled] = "!valueChanged" (click)="updateClicked(full_name.value, Email.value)">Update</button>
+        <button mat-button color="accent" style="margin-top: 3px;" class="btn-block" 
+         (click)="cancelClicked()">Cancel</button>
     </mat-card>
-    <div> 
-        <img class= "logImage" src="../../../assets/services2.PNG" alt="logo">
-      </div>
 </div>

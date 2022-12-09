@@ -5,6 +5,7 @@ import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LogInComponent } from './Login/log-in/log-in.component';
 import { RegisterComponent } from './Login/register/register.component';
+import { UpdateComponent } from './Login/update/update.component';
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo: "login"},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: "homepage", component: HomepageComponent},
   {path: "bookings", component: BookingComponent},
   {path: "info", component: CustomerInfoComponent},
+  {path: "update", component: UpdateComponent},
 
 ];
 

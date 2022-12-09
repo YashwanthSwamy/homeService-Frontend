@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookingComponent } from './booking/booking.component';
 import { CustomerInfoComponent } from './customer-info/customer-info.component';
+import { UpdateComponent } from './Login/update/update.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CustomerInfoComponent } from './customer-info/customer-info.component';
     HomepageComponent,
     DashboardComponent,
     BookingComponent,
-    CustomerInfoComponent
+    CustomerInfoComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
