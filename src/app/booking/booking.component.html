@@ -1,4 +1,11 @@
-<div style="padding-top: 6%;">
+<span *ngIf="showLoader else loader">Login</span>
+<ng-template #loader>
+  <mat-icon>
+    <mat-spinner class="mat-spinner-color" diameter="20"></mat-spinner>
+  </mat-icon>
+</ng-template>
+
+<div *ngIf="!showLoader" style="padding-top: 6%;">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="UserName">
         <th mat-header-cell *matHeaderCellDef> User Name </th>

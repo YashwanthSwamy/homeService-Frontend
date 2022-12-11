@@ -44,7 +44,10 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log("register");
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.showLoader = true;
     const customer_info = {
       name: this.registerForm.get("name")?.value,
       email: this.registerForm.get("email")?.value,
@@ -56,13 +59,14 @@ export class RegisterComponent implements OnInit {
       state: this.registerForm.get("state")?.value,
       country: this.registerForm.get("country")?.value,
       pinCode: this.registerForm.get("pinCode")?.value,
-      userType: this.registerForm.get("userType")?.value,
+      userType: this.registerForm.get("userType")?.value === 'Service Provider' ? "ServiceProvider" : this.registerForm.get("offeredService")?.value,
       offeredService: this.registerForm.get("userType")?.value === 'Service Provider' ? this.registerForm.get("offeredService")?.value : null
     }
     console.log("customer_info", customer_info)
-    const response = this.registerService.addCustomer(customer_info);
-    console.log("response", customer_info)
-    // this.router.navigateByUrl('/login');
+    this.registerService.addCustomer(customer_info).subscribe(resp => {
+      this.showLoader = false;
+      this.router.navigateByUrl('/login');
+    });
   }
 
   validateEmptyValue(control: AbstractControl) {
@@ -70,12 +74,5 @@ export class RegisterComponent implements OnInit {
       return { invalidUrl: true };
     }
     return null;
-  }
-
-
-  full_name = '';
-  getValue(val: string) {
-    console.warn(val);
-    this.full_name = val;
   }
 }

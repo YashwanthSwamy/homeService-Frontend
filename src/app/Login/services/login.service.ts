@@ -9,8 +9,8 @@ import { map } from "rxjs/operators";
 export class LoginService {
   constructor(private http: HttpClient) { }
 
-  public getCustomerInfo(customer_id: string, body: any) {
-    return this.http.get(`${environment.apiUrl}userinfo/isAuthorized/${customer_id}`, body= body).pipe(
+  public getCustomerInfo(customer_id: string, password: any) {
+    return this.http.get(`${environment.userinfoApiUrl}isAuthorized/${customer_id}`, { params: { password }}).pipe(
         map((response: any) => {
             if (response.password){
                 delete response.password

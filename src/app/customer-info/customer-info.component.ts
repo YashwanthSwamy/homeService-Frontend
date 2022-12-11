@@ -11,6 +11,7 @@ import { UserInfoProviderService } from '../authorizer/services/userInfoProvider
 export class CustomerInfoComponent implements OnInit {
   hide = true
   customer_info !: User;
+  
   constructor(
     private router: Router,
     private userInfoProviderService: UserInfoProviderService

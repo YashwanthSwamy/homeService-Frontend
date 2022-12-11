@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../authorizer/interface/user';
 import { UserInfoProviderService } from '../authorizer/services/userInfoProviderService';
+import { BookingService } from './services/booking.service';
 
 export interface BookingModel {
   End: string;
@@ -9,21 +10,6 @@ export interface BookingModel {
   UserName: string;
 };
 
-const ELEMENT_DATA: BookingModel[] = [
-  {
-      End: "Sat, 10 Dec 2022 03:45:45 GMT",
-      ServiceProviderName: "xyz",
-      Start: "Sat, 10 Dec 2022 03:45:45 GMT",
-      UserName: "abc"
-  },
-  {
-      End: "Sat, 10 Dec 2022 03:45:45 GMT",
-      ServiceProviderName: "xyz",
-      Start: "Sat, 10 Dec 2022 03:45:45 GMT",
-      UserName: "abc"
-  }
-];
-
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -31,11 +17,29 @@ const ELEMENT_DATA: BookingModel[] = [
 })
 export class BookingComponent implements OnInit {
   displayedColumns: string[] = ['UserName', 'ServiceProviderName', 'Start', 'End'];
-  dataSource = ELEMENT_DATA;
+  customerInfo !: User;
+  dataSource: any;
+  showLoader = false;
 
-  constructor() { }
+  constructor(
+    private readonly userInfoProviderService: UserInfoProviderService,
+    private readonly bookingService: BookingService
+  ) { }
 
   ngOnInit(): void {
+    this.showLoader = true
+    this.customerInfo = this.userInfoProviderService.getCurrentUserInfo();
+    if(this.customerInfo.userType === "Service Provider") {
+      this.bookingService.getServiceProviderBookings(this.customerInfo.email).subscribe((resp: any) =>{
+        this.dataSource = resp.Bookings;
+        this.showLoader = false;
+      });
+    } else {
+      this.bookingService.getCustomerBookings(this.customerInfo.email).subscribe((resp: any) =>{
+        this.dataSource = resp.Bookings;
+        this.showLoader = false;
+      });
+    }
   }
 
 }

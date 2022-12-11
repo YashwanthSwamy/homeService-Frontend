@@ -30,7 +30,7 @@
   </ngb-carousel>
 </div> -->
 <div *ngIf="isServiceProvider">
-  <div style="padding-top: 6%; padding-left: 8%;">
+  <div style="padding-top: 6%; padding-left: 6%;">
     <mat-form-field appearance="outline">
       <mat-label>From</mat-label>
       <input matInput [matDatepicker]="frompicker" placeholder="From" [(ngModel)]="fromDate"
@@ -55,7 +55,7 @@
     <table mat-table [dataSource]="serviceProviderDataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="BookingID">
-        <th mat-header-cell *matHeaderCellDef> Booking ID </th>
+        <th mat-header-cell *matHeaderCellDef> Slot ID </th>
         <td mat-cell *matCellDef="let element"> {{element.BookingID}} </td>
       </ng-container>
 
@@ -82,7 +82,7 @@
 </div>
 
 
-<div *ngIf="!isServiceProvider" style="padding-top: 8%;">
+<div *ngIf="!isServiceProvider" style="padding-top: 6%;">
   <mat-tab-group backgroundColor="primary">
     <mat-tab label="Hair Stylist">
       <table mat-table [dataSource]="hairStylistDataSource" class="mat-elevation-z8">
@@ -98,8 +98,18 @@
         </ng-container>
 
         <ng-container matColumnDef="PhoneNumber">
-          <th mat-header-cell *matHeaderCellDef> PhoneNumber </th>
+          <th mat-header-cell *matHeaderCellDef> Phone Number </th>
           <td mat-cell *matCellDef="let element"> {{element.PhoneNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Start">
+          <th mat-header-cell *matHeaderCellDef> Start </th>
+          <td mat-cell *matCellDef="let element"> {{element.Start}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="End">
+          <th mat-header-cell *matHeaderCellDef> End </th>
+          <td mat-cell *matCellDef="let element"> {{element.End}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Book">
@@ -125,8 +135,18 @@
         </ng-container>
 
         <ng-container matColumnDef="PhoneNumber">
-          <th mat-header-cell *matHeaderCellDef> PhoneNumber </th>
+          <th mat-header-cell *matHeaderCellDef> Phone Number </th>
           <td mat-cell *matCellDef="let element"> {{element.PhoneNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Start">
+          <th mat-header-cell *matHeaderCellDef> Start </th>
+          <td mat-cell *matCellDef="let element"> {{element.Start}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="End">
+          <th mat-header-cell *matHeaderCellDef> End </th>
+          <td mat-cell *matCellDef="let element"> {{element.End}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Book">
@@ -152,8 +172,18 @@
         </ng-container>
 
         <ng-container matColumnDef="PhoneNumber">
-          <th mat-header-cell *matHeaderCellDef> PhoneNumber </th>
+          <th mat-header-cell *matHeaderCellDef> Phone Number </th>
           <td mat-cell *matCellDef="let element"> {{element.PhoneNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Start">
+          <th mat-header-cell *matHeaderCellDef> Start </th>
+          <td mat-cell *matCellDef="let element"> {{element.Start}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="End">
+          <th mat-header-cell *matHeaderCellDef> End </th>
+          <td mat-cell *matCellDef="let element"> {{element.End}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Book">

@@ -9,7 +9,6 @@ export class RegisterService {
     constructor(private http: HttpClient) { }
 
     public addCustomer(userInfo: any) {
-        console.log("add user")
-        return this.http.post(`${environment.apiUrl}/userinfo/adduser`, userInfo);
+        return this.http.post(`${environment.userinfoApiUrl}adduser`, userInfo);
     }
 }
