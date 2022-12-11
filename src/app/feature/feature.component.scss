@@ -1,0 +1,19 @@
+.app-layout {
+    display: flex;
+}
+
+.app-content {
+    margin: 0;
+    padding-bottom: 68px;
+}
+
+.app-page-inner {
+    min-height: calc(100vh - 24px);
+    padding-bottom: 68px;
+    width: 100%;
+}
+
+.logo {
+    text-decoration: none;
+    color: #feeded;
+}

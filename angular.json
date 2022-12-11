@@ -19,6 +19,11 @@
           "options": {
             "outputPath": "dist/app-name",
             "index": "src/index.html",
+            "allowedCommonJsDependencies": [
+              "rxjs",
+              "moment-timezone",
+              "socket.io-client"
+            ],
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",

@@ -1,39 +1,54 @@
-
-  <div  fxLayoutAlign="center center" flex-direction= "row" >
+<div fxLayoutAlign="center center" flex-direction="row">
   <div>
-      <img class= "logo" src="../../../assets/logo.png" alt="logo">
+    <img class="logo" src="../../../assets/logo.png" alt="logo">
   </div>
   <div>
-      <h1 class="company-name">Home Service</h1>
+    <h1 class="company-name">Home Service</h1>
   </div>
 </div>
-  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Log in</mat-card-title>
-      </mat-card-header>
-      <form class="example-form">
-        <mat-card-content>
-          <mat-form-field appearance="outline" class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email">
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="example-full-width">
-            <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-          </mat-form-field>
-        </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block" (click)="loginClicked()">Log in</button>
-        <button mat-button color="primary" style="margin-top: 8px;" class="btn-block" (click)="registerClicked()">New
-          User</button>
-      </form>
-    </mat-card>
-    <div> 
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field appearance="outline" fxFlex.xs="70" fxFlex.sm="70" fxFlex.md="60" fxFlex.gt-md="60">
+          <input matInput placeholder="Email" formControlName="userName" tabindex="0" />
+          <mat-error> Required </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field appearance="outline" fxFlex.xs="70" fxFlex.sm="70" fxFlex.md="60" fxFlex.gt-md="60">
+          <input aria-label="password-input" matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Password"
+            formControlName="password" type="password" id="password-input" tabindex="0" />
+          <button type="button" mat-icon-button matSuffix tabindex="-1" (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error> Required </mat-error>
+        </mat-form-field>
+      </div>
+      <br>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button type="submit" #focusSignIn class="divider-btn-fields" mat-raised-button fxFlex.xs="70" fxFlex.sm="70"
+          fxFlex.md="60" fxFlex.gt-md="60" [disabled]="loginForm.invalid || showLoader" (click)="login()">
+          <span *ngIf="!showLoader else loader">Login</span>
+          <ng-template #loader>
+            <mat-icon>
+              <mat-spinner class="mat-spinner-color" diameter="20"></mat-spinner>
+            </mat-icon>
+          </ng-template>
+        </button>
+      </div>
+      <br>
+      <button mat-button color="primary" style="margin-top: 8px;" class="btn-block" (click)="registerClicked()">New
+        User</button>
+      <br>
+    </form>
+  </mat-card>
+  <!-- <div> 
       <img class= "logImage" src="../../../assets/services2.PNG" alt="logo">
-    </div>
-  </div>
-
+    </div> -->
+</div>

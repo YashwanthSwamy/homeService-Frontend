@@ -7,27 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { LogInComponent } from './Login/log-in/log-in.component';
-import { RegisterComponent } from './Login/register/register.component';
-import { LoginHomepageComponent } from './Login/login-homepage/login-homepage.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BookingComponent } from './booking/booking.component';
-import { CustomerInfoComponent } from './customer-info/customer-info.component';
-import { UpdateComponent } from './Login/update/update.component';
+import { AuthorizerRoutingModule } from './authorizer/authorizer-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogInComponent,
-    RegisterComponent,
-    LoginHomepageComponent,
-    HomepageComponent,
-    DashboardComponent,
-    BookingComponent,
-    CustomerInfoComponent,
-    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +23,9 @@ import { UpdateComponent } from './Login/update/update.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    AuthorizerRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
