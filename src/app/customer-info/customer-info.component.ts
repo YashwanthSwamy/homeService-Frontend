@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../authorizer/interface/user';
+import { UserInfoProviderService } from '../authorizer/services/userInfoProviderService';
 
 @Component({
   selector: 'app-customer-info',
@@ -8,10 +10,16 @@ import { Router } from '@angular/router';
 })
 export class CustomerInfoComponent implements OnInit {
   hide = true
-  constructor(private router: Router) { }
+  customer_info !: User;
+  constructor(
+    private router: Router,
+    private userInfoProviderService: UserInfoProviderService
+    ) { }
 
   ngOnInit(): void {
+    this.customer_info = this.userInfoProviderService.getCurrentUserInfo();
   }
+
   updateClicked(){
     this.router.navigateByUrl('/update');
   }

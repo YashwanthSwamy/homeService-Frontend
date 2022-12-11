@@ -16,10 +16,6 @@ export class UserInfoProviderService {
     return email;
   }
 
-  getUsername() {
-    const { userName } = this.getCurrentUserInfo();
-    return userName;
-  }
 
   clearLocalStorage() {
     localStorage.removeItem("currentUser");
@@ -36,7 +32,7 @@ export class UserInfoProviderService {
     }
   }
 
-  private getCurrentUserInfo(): User {
+  getCurrentUserInfo(): User {
     return this.getInfoFromLocalStorage("currentUser") as User;
   }
 }

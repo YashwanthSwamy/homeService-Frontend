@@ -1,24 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import { User } from '../authorizer/interface/user';
+import { UserInfoProviderService } from '../authorizer/services/userInfoProviderService';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface customerBookModel {
+  Name: string;
+  Email: string;
+  PhoneNumber: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+export interface serviceProviderSlotsModel {
+  BookingID: string;
+  Start: string;
+  End: string;
+  Booked: string;
+}
 
 @Component({
   selector: 'app-homepage',
@@ -26,12 +22,55 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  serviceProviderSlotColumns: string[] = ['BookingID', 'Start', 'End', "Booked"];
+  customerColumns: string[] = ['Name', 'Email', 'PhoneNumber', "Book"];
+  carpenterDataSource!: customerBookModel[];
+  plumberDataSource!: customerBookModel[];
+  hairStylistDataSource!: customerBookModel[];
+  serviceProviderDataSource!: serviceProviderSlotsModel[];
+  customer_info!: User;
+  isServiceProvider = true;
+  public invalidDatesErrorFlag!: boolean;
+  public fromDate!: Date;
+  public toDate!: Date;
+  public minDate = new Date();
   
-  constructor() { }
+  constructor(
+    private readonly userInfoProviderService: UserInfoProviderService
+  ) { }
 
   ngOnInit(): void {
+    this.carpenterDataSource = [
+      { Name: "Carpenter", Email: 'carpenter@gmail.com', PhoneNumber: "123456789"},
+    ];
+    this.plumberDataSource = [
+      { Name: "Plumber", Email: 'plumber@gmail.com', PhoneNumber: "123456789"},
+    ];
+    this.hairStylistDataSource = [
+      { Name: "Hair Stylist", Email: 'hairstylist@gmail.com', PhoneNumber: "123456789"},
+    ];
+    this.serviceProviderDataSource = [
+      { BookingID: "1", Start: "abc", End: 'abc@abc.com', Booked: "Booked"},
+    ]
+    this.customer_info = this.userInfoProviderService.getCurrentUserInfo();
+    if (this.customer_info.userType === "Service Provider"){
+      this.isServiceProvider = true
+    }
   }
+
+  AddSlots() {}
+
+  book(ele: any){
+    console.log(ele)
+  }
+
+  dateChangeEventHandler = () => {
+    this.invalidDatesErrorFlag = false;
+    if (this.toDate && this.fromDate) {
+      if (moment(this.fromDate).isAfter(this.toDate)) {
+        this.invalidDatesErrorFlag = true;
+      }
+    }
+  };
 
 }

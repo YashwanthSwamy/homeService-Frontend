@@ -12,19 +12,20 @@
             <mat-card-title>Register</mat-card-title>
         </mat-card-header>
         <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-            <form class="example-form">
+            <form class="example-form" [formGroup]="registerForm" (ngSubmit)="register()">
                 <mat-card-content>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Full Name</mat-label>
-                        <input matInput placeholder="Full Name">
+                        <input matInput formControlName="name"  placeholder="Full Name">
+                        <mat-error> Required </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email">
+                        <input matInput formControlName="email"  placeholder="Email">
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <input matInput formControlName="password"  [type]="hide ? 'password' : 'text'">
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -32,58 +33,74 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Telephone</mat-label>
-                        <input type="tel" matInput placeholder="(555) 555-1234">
+                        <input type="tel" formControlName="phoneNumber"  matInput placeholder="(555) 555-1234">
                         <mat-icon matSuffix>phone</mat-icon>
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="example-full-width">
                         <mat-label>Choose a role...</mat-label>
-                        <mat-select>
-                            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+                        <mat-select formControlName="userType" >
+                            <mat-option [value]="role" *ngFor="let role of roles">{{role}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" class="example-full-width">
-                        <mat-label>Service Offered</mat-label>
-                        <mat-select>
-                            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <div *ngIf="registerForm.get('userType')?.value === 'Service Provider'">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Service Offered</mat-label>
+                            <mat-select formControlName="offeredService" >
+                                <mat-option [value]="service" *ngFor="let service of services">{{service}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                     <div>
                         <h3>Address</h3>
                         <mat-form-field appearance="outline" class="example-full-width">
                             <mat-label>Flat Number</mat-label>
-                            <input matInput placeholder="Flat Number">
+                            <input matInput formControlName="houseNumber"  placeholder="Flat Number">
+                            <mat-error> Required </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="example-full-width">
                             <mat-label>Street</mat-label>
-                            <input matInput placeholder="Street">
+                            <input matInput formControlName="street"  placeholder="Street">
+                            <mat-error> Required </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="example-full-width">
                             <mat-label>City</mat-label>
-                            <input matInput placeholder="City">
+                            <input matInput formControlName="city"  placeholder="City">
+                            <mat-error> Required </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="example-full-width">
                             <mat-label>State</mat-label>
-                            <input matInput placeholder="State">
+                            <input matInput formControlName="state"  placeholder="State">
+                            <mat-error> Required </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="example-full-width">
                             <mat-label>Country</mat-label>
-                            <input matInput placeholder="Country">
+                            <input matInput formControlName="country"  placeholder="Country">
+                            <mat-error> Required </mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="example-full-width">
                             <mat-label>Pin Code</mat-label>
-                            <input matInput placeholder="Pin Code">
+                            <input matInput formControlName="pinCode" placeholder="Pin Code">
+                            <mat-error> Required </mat-error>
                         </mat-form-field>
                     </div>
                 </mat-card-content>
             </form>
         </cdk-virtual-scroll-viewport>
-        <button style="padding: 0px;" mat-stroked-button color="accent" class="btn-block">Register</button>
+        <button type="submit" #focusSignIn style="padding: 0px;" mat-stroked-button color="accent" class="btn-block" fxFlex.xs="70" fxFlex.sm="70"
+          fxFlex.md="60" fxFlex.gt-md="60" [disabled]="registerForm.invalid || showLoader" (click)="register()">
+          <span *ngIf="!showLoader else loader">Register</span>
+          <ng-template #loader>
+            <mat-icon>
+              <mat-spinner class="mat-spinner-color" diameter="20"></mat-spinner>
+            </mat-icon>
+          </ng-template>
+        </button>
         <button mat-button color="primary" style="margin-top: 8px;" class="btn-block" (click)="loginClicked()">Exisiting
             User</button>
     </mat-card>
-    <div> 
+    <!-- <div> 
         <img class= "logImage" src="../../../assets/services2.PNG" alt="logo">
-      </div>
+      </div> -->
 </div>

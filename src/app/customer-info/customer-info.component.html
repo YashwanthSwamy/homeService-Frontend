@@ -1,30 +1,27 @@
 <div class="back">
   <mat-card class="profileName">
-    <mat-card-content class="headerText">Vaishnavi Nookala</mat-card-content>
+    <mat-card-content class="headerText">{{customer_info.name}}</mat-card-content>
   </mat-card>
   <div fxLayout="row">
-    <h3 class="details">Full Name :</h3>
-    <h4 class="detailValue">Vaishnavi Nookala</h4>
+    <h3 class="details">Full Name : <span class="detailValue">{{customer_info.name}}</span></h3>
   </div>
   <div fxLayout="row">
-    <h3 class="details">Email Id :</h3>
-    <h4 class="detailValue">nookalavaishnavi@yohoo.com</h4>
+    <h3 class="details">Email Id : <span class="detailValue">{{customer_info.email}}</span></h3>
   </div>
   <div fxLayout="row">
-    <h3 class="details">Phone No :</h3>
-    <h4 class="detailValue">7201235678</h4>
+    <h3 class="details">Phone No : <span class="detailValue">{{customer_info.phoneNumber}}</span></h3>
   </div>
   <div fxLayout="row">
-    <h3 class="addressDetail">Address :</h3>
-    <div class="addressVal">
-      <h4> 2747 Apt 7 Glenwood dr</h4>
-      <h4> Boulder, colorado</h4>
-      <h4> United States, 80304</h4>
-    </div>
+    <h3 class="addressDetail">Address :
+      <span class="detailValue">
+        {{customer_info.houseNumber}}, <br>
+        <span style="padding-left: 6em;">{{customer_info.street}},</span> <br>
+        <span style="padding-left: 6em;">{{customer_info.city}}, {{customer_info.state}},</span><br>
+        <span style="padding-left: 6em;">{{customer_info.country}}, {{customer_info.pinCode}}</span>
+      </span>
+    </h3>
   </div>
   <div class="buttonStyle">
     <button mat-raised-button color="accent" (click)="updateClicked()">Update Info</button>
+  </div>
 </div>
-</div>
-
-
