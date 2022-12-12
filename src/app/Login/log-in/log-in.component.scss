@@ -4,6 +4,12 @@
     margin: 4px;
 }
 
+.cont {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 .company-name{
     font-weight: 600;
     font-family: 'EB Garamond';

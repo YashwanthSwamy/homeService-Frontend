@@ -1,4 +1,4 @@
-<div fxLayoutAlign="center center" flex-direction="row">
+<div class="cont" fxLayoutAlign="center center" flex-direction="row">
   <div>
     <img class="logo" src="../../../assets/logo.png" alt="logo">
   </div>
@@ -6,20 +6,21 @@
     <h1 class="company-name">Home Service</h1>
   </div>
 </div>
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="login-wrapper cont" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
     <mat-card-header>
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div fxLayout="row" fxLayoutAlign="center center">
-        <mat-form-field appearance="outline" fxFlex.xs="70" fxFlex.sm="70" fxFlex.md="60" fxFlex.gt-md="60">
-          <input matInput placeholder="Email" formControlName="userName" tabindex="0" />
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="userName"  placeholder="Email">
           <mat-error> Required </mat-error>
-        </mat-form-field>
+      </mat-form-field>
       </div>
       <div fxLayout="row" fxLayoutAlign="center center">
-        <mat-form-field appearance="outline" fxFlex.xs="70" fxFlex.sm="70" fxFlex.md="60" fxFlex.gt-md="60">
+        <mat-form-field appearance="outline" class="example-full-width" fxFlex.xs="70" fxFlex.sm="70" fxFlex.md="60" fxFlex.gt-md="60">
           <input aria-label="password-input" matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Password"
             formControlName="password" type="password" id="password-input" tabindex="0" />
           <button type="button" mat-icon-button matSuffix tabindex="-1" (click)="hidePassword = !hidePassword"
@@ -32,7 +33,7 @@
       <br>
       <br>
       <div fxLayout="row" fxLayoutAlign="center center">
-        <button type="submit" #focusSignIn class="divider-btn-fields" mat-raised-button fxFlex.xs="70" fxFlex.sm="70"
+        <button type="submit" #focusSignIn style="padding: 0px;" mat-stroked-button color="primary" class="btn-block" fxFlex.xs="70" fxFlex.sm="70"
           fxFlex.md="60" fxFlex.gt-md="60" [disabled]="loginForm.invalid || showLoader" (click)="login()">
           <span *ngIf="!showLoader else loader">Login</span>
           <ng-template #loader>
