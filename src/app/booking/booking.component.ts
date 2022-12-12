@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { User } from '../authorizer/interface/user';
 import { UserInfoProviderService } from '../authorizer/services/userInfoProviderService';
 import { BookingService } from './services/booking.service';
@@ -29,14 +30,31 @@ export class BookingComponent implements OnInit {
   ngOnInit(): void {
     this.showLoader = true
     this.customerInfo = this.userInfoProviderService.getCurrentUserInfo();
-    if(this.customerInfo.userType === "Service Provider") {
+    const dataSource: any = []
+    if(this.customerInfo.userType === "ServiceProvider") {
       this.bookingService.getServiceProviderBookings(this.customerInfo.email).subscribe((resp: any) =>{
-        this.dataSource = resp.Bookings;
+        resp.Bookings.forEach((element: any) => {
+          dataSource.push({
+            UserName: element.UserName,
+            Start: moment(element.Start).format("MMM DD YYYY HH:mm:ss"),
+            End: moment(element.End).format("MMM DD YYYY HH:mm:ss"),
+            ServiceProviderName: element.ServiceProviderName
+          })
+        })
+        this.dataSource = dataSource;
         this.showLoader = false;
       });
     } else {
       this.bookingService.getCustomerBookings(this.customerInfo.email).subscribe((resp: any) =>{
-        this.dataSource = resp.Bookings;
+        resp.Bookings.forEach((element: any) => {
+          dataSource.push({
+            UserName: element.UserName,
+            Start: moment(element.Start).format("MMM DD YYYY HH:mm:ss"),
+            End: moment(element.End).format("MMM DD YYYY HH:mm:ss"),
+            ServiceProviderName: element.ServiceProviderName
+          })
+        })
+        this.dataSource = dataSource;
         this.showLoader = false;
       });
     }

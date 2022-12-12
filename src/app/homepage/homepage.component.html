@@ -31,25 +31,33 @@
 </div> -->
 <div *ngIf="isServiceProvider">
   <div style="padding-top: 6%; padding-left: 6%;">
-    <mat-form-field appearance="outline">
-      <mat-label>From</mat-label>
-      <input matInput [matDatepicker]="frompicker" placeholder="From" [(ngModel)]="fromDate"
-        (ngModelChange)="dateChangeEventHandler()" [min]="minDate" />
-      <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
-      <mat-datepicker #frompicker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field style="padding-left: 8%;" appearance="outline">
-      <mat-label>To</mat-label>
-      <input matInput [matDatepicker]="topicker" placeholder="To" [(ngModel)]="toDate"
-        (ngModelChange)="dateChangeEventHandler()" [min]="minDate" />
-      <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
-      <mat-datepicker #topicker></mat-datepicker>
-    </mat-form-field>
-  <span style="padding-left: 8%;" >
-    <button type="submit" #focusSignIn  mat-stroked-button color="accent" class="btn-block"
-      fxFlex.xs="70" fxFlex.sm="70" fxFlex.md="60" fxFlex.gt-md="60" (click)="AddSlots()"> Add Slots
-    </button>
-  </span>
+    <form [formGroup]="addSlotForm" (ngSubmit)="AddSlots()">
+      <mat-form-field appearance="outline">
+        <mat-label>From</mat-label>
+        <input matInput [matDatepicker]="frompicker" placeholder="From" [(ngModel)]="fromDate"
+        formControlName="from"  (ngModelChange)="dateChangeEventHandler()" [min]="minDate" />
+        <mat-datepicker-toggle matSuffix [for]="frompicker"></mat-datepicker-toggle>
+        <mat-datepicker #frompicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field style="padding-left: 8%;" appearance="outline">
+        <mat-label>To</mat-label>
+        <input matInput [matDatepicker]="topicker" placeholder="To" [(ngModel)]="toDate"
+          formControlName="to" (ngModelChange)="dateChangeEventHandler()" [min]="minDate" />
+        <mat-datepicker-toggle matSuffix [for]="topicker"></mat-datepicker-toggle>
+        <mat-datepicker #topicker></mat-datepicker>
+      </mat-form-field>
+    <span style="padding-left: 8%;">
+      <button type="submit" #focusSignIn class="divider-btn-fields" mat-raised-button fxFlex.xs="70" fxFlex.sm="70"
+          fxFlex.md="60" fxFlex.gt-md="60" [disabled]="addSlotForm.invalid || showAddSlotLoader" (click)="AddSlots()">
+          <span *ngIf="!showAddSlotLoader else loader">Add Slot</span>
+          <ng-template #loader>
+            <mat-icon>
+              <mat-spinner class="mat-spinner-color" diameter="20"></mat-spinner>
+            </mat-icon>
+          </ng-template>
+        </button>
+    </span>
+    </form>
   </div>
   <div>
     <table mat-table [dataSource]="serviceProviderDataSource" class="mat-elevation-z8">
@@ -114,7 +122,7 @@
 
         <ng-container matColumnDef="Book">
           <th mat-header-cell *matHeaderCellDef>  </th>
-          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="book(element.name)">Book</button> </td>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" [disabled]="element.Book" (click)="book(element)">Book</button> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>
@@ -151,7 +159,7 @@
 
         <ng-container matColumnDef="Book">
           <th mat-header-cell *matHeaderCellDef>  </th>
-          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="book(element.name)">Book</button> </td>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" [disabled]="element.Book" (click)="book(element)">Book {{element.Booked}}</button> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>
@@ -183,12 +191,12 @@
   
         <ng-container matColumnDef="End">
           <th mat-header-cell *matHeaderCellDef> End </th>
-          <td mat-cell *matCellDef="let element"> {{element.End}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.End}}</td>
         </ng-container>
 
         <ng-container matColumnDef="Book">
           <th mat-header-cell *matHeaderCellDef>  </th>
-          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" (click)="book(element.name)">Book</button> </td>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" [disabled]="element.Book" (click)="book(element)">Book</button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="customerColumns"></tr>

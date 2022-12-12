@@ -41,3 +41,21 @@ ngb-carousel {
 table {
   width: 100%;
 }
+
+.cancel-btn {
+  color: rgb(0, 110, 154);
+  background-color: white;
+  font-size: 14px !important;
+  font-family: sans-serif;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+  margin-bottom: 0px !important;
+}
+
+.footer{
+  padding-left: 8px;
+  height: 40px;
+  width: 98px;
+}

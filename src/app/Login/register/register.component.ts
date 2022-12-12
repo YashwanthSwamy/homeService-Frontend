@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private readonly formBuilder: FormBuilder,
-    private readonly registerService: RegisterService
+    private readonly registerService: RegisterService,
+    private readonly _snackBar: MatSnackBar
   ) {
   }
 
@@ -59,13 +61,17 @@ export class RegisterComponent implements OnInit {
       state: this.registerForm.get("state")?.value,
       country: this.registerForm.get("country")?.value,
       pinCode: this.registerForm.get("pinCode")?.value,
-      userType: this.registerForm.get("userType")?.value === 'Service Provider' ? "ServiceProvider" : this.registerForm.get("offeredService")?.value,
+      userType: this.registerForm.get("userType")?.value === 'Service Provider' ? "ServiceProvider" : this.registerForm.get("userType")?.value,
       offeredService: this.registerForm.get("userType")?.value === 'Service Provider' ? this.registerForm.get("offeredService")?.value : null
     }
-    console.log("customer_info", customer_info)
-    this.registerService.addCustomer(customer_info).subscribe(resp => {
+    this.registerService.addCustomer(customer_info).toPromise()
+    .then(resp => {
       this.showLoader = false;
       this.router.navigateByUrl('/login');
+    })
+    .catch(err => {
+      this.showLoader = false;
+      this.openSnackBar("Failed to Add User Try Again!!", "Close");
     });
   }
 
@@ -74,5 +80,9 @@ export class RegisterComponent implements OnInit {
       return { invalidUrl: true };
     }
     return null;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorizerRoutingModule } from './authorizer/authorizer-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     NgbModule,
     AuthorizerRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

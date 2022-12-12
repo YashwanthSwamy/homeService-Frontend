@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Would like to Book?</h2>
+<div mat-dialog-content class="bus-config-add-bus">
+    <p style="padding-top: 8px; padding-bottom: 4px">
+        {{data.Name}} from {{data.Start}} to {{data.End}}
+    </p>
+</div>
+<div mat-dialog-actions>
+    <button id="link-ev-modal-cancel" mat-stroked-button class="btn btn-danger cancel-btn footer"
+        (click)="closeDialog({ event: 'cancel' })">
+        Cancel
+    </button>
+    <button mat-flat-button class="btn  add-ev-btn footer" (click)="makeBooking()">
+        Book
+    </button>
+</div>

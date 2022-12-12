@@ -19,10 +19,6 @@ export class UserInfoProviderService {
 
   clearLocalStorage() {
     localStorage.removeItem("currentUser");
-    localStorage.removeItem("subTenant");
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("sessionExpiry");
-    localStorage.removeItem("userSettings");
   }
 
 

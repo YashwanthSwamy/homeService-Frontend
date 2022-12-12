@@ -29,10 +29,10 @@ export class HomepageService {
   }
 
   public getServiceProviderSlots(serviceProviderId: string) {
-    return this.http.get(`${environment.bookingApiUrl}slots/${serviceProviderId}`, { params : { service_provider_id: serviceProviderId}});
+    return this.http.get(`${environment.bookingApiUrl}slots/${serviceProviderId}`, { params : { ServiceProviderID: serviceProviderId}});
   }
 
-  public bookSlot(serviceProviderId: string, slotInfo: SlotModel) {
-    return this.http.put(`${environment.bookingApiUrl}slots/${serviceProviderId}`, slotInfo);
+  public bookSlot(customerId: string, slotInfo: any) {
+    return this.http.post(`${environment.bookingApiUrl}slots/${customerId}`, slotInfo);
   }
 }

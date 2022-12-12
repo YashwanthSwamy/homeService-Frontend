@@ -13,6 +13,6 @@ export class BookingService {
   }
 
   public getServiceProviderBookings(serviceProviderId: string) {
-    return this.http.get(`${environment.bookingApiUrl}all-bookings/${serviceProviderId}`, { params : { service_provider_id: serviceProviderId}});
+    return this.http.get(`${environment.bookingApiUrl}all-bookings/${serviceProviderId}`, { params : { ServiceProviderID: serviceProviderId}});
   }
 }
