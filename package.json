@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "build:local": "rimraf dist && ng build",
+    "rimraf": "./node_modules/rimraf/bin.js",
     "test": "ng test"
   },
   "private": true,
@@ -25,6 +27,7 @@
     "@ng-bootstrap/ng-bootstrap": "^13.1.1",
     "bootstrap": "^5.2.3",
     "moment": "^2.24.0",
+    "rimraf": "^3.0.2",
     "rxjs": "~7.5.0",
     "socket.io-client": "^2.3.0",
     "tslib": "^2.3.0",
